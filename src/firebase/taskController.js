@@ -17,13 +17,13 @@ export const getTasks = async (user) => {
     return tasks;
 }
 
-export const updateTask = async (task) => {
-    await setDoc(doc(db, 'tasks', task.id), {
+export const updateTask = async (task, user) => {
+    await setDoc(doc(db, `tasks ${user.email}`, task.id), {
         title: task.title,
         description: task.description
     })
 }
 
-export const deleteTask = async (id) => {
-    await deleteDoc(doc(db,'tasks', id))
+export const deleteTask = async (id, user) => {
+    await deleteDoc(doc(db,`tasks ${user.email}`, id))
 }

@@ -2,11 +2,6 @@ import React,{ useState, useEffect, useContext } from 'react'
 import { AppContext } from '../App';
 import { addNewTask, getTasks, updateTask, deleteTask } from '../firebase/taskController'
 
-const task = {
-  title: "Este es el título",
-  description: "Esta es la descripción",
-};
-
 const TaskList = () => {
   const [task, setTask] = useState( {title:"", description:""} )
   const [tasks, setTasks] = useState([]);
@@ -21,7 +16,7 @@ const TaskList = () => {
   }
 
   const updateExistingTask = async () => {
-    await updateTask(task);
+    await updateTask(task, user);
     setTask({title:"", description:""})
     initializeTasks();
     setMode("add");
@@ -42,7 +37,7 @@ const TaskList = () => {
   }
 
   const removeTask = async (id) => {
-    await deleteTask(id)
+    await deleteTask(id,user)
     initializeTasks();
   }
 
