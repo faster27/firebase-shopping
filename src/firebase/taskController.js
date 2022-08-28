@@ -1,6 +1,6 @@
 // Aqui se crearan las operaciones del CRUD
 import { db } from './index';
-import { doc, collection, addDoc, getDocs, setDoc, deleteDoc } from "firebase/firestore";
+import { doc, collection, addDoc, getDocs, setDoc, deleteDoc, orderBy, query} from "firebase/firestore";
 
 export const addNewTask = async (task, user) => {
     await addDoc(collection(db, `tasks ${user.email}`), {
