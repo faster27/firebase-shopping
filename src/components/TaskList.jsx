@@ -45,6 +45,11 @@ const TaskList = () => {
     initializeTasks();
   }
 
+  const handleClickToast = (taskId, toastId) => {
+    removeTask(taskId)
+    toast.dismiss(toastId)
+  }
+
   useEffect(() => {
     initializeTasks();
   }, [])
@@ -117,7 +122,7 @@ const TaskList = () => {
                                       <div className='flex justify-between mt-3'>
                                         <button 
                                           className='bg-red-600 text-white py-1 px-2 rounded hover:bg-red-700 transition' 
-                                          onClick={() => removeTask(task.id)}
+                                          onClick={() => handleClickToast(task.id, t.id)}
                                         >
                                           Si
                                         </button>

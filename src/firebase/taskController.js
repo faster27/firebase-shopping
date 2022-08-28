@@ -5,15 +5,17 @@ import { doc, collection, addDoc, getDocs, setDoc, deleteDoc, orderBy, query} fr
 export const addNewTask = async (task, user) => {
     await addDoc(collection(db, `tasks ${user.email}`), {
         title: task.title,
-        description: task.description
+        description: task.description,
+        creation: new Date()
     });
 }
 
 export const getTasks = async (user) => {
-    const querySnapshot = await getDocs(collection(db, `tasks ${user.email}`))
+    const querySnapshot = await getDocs(collection(db, `tasks ${user.email}`), orderBy("creation", "desc"))
     const tasks = querySnapshot.docs.map(doc => {
         return{ ...doc.data(), id:doc.id }
     });
+    
     return tasks;
 }
 
