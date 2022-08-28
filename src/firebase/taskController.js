@@ -2,16 +2,15 @@
 import { db } from './index';
 import { doc, collection, addDoc, getDocs, setDoc, deleteDoc } from "firebase/firestore";
 
-
-export const addNewTask = async (task) => {
-    await addDoc(collection(db, "tasks"), {
+export const addNewTask = async (task, user) => {
+    await addDoc(collection(db, `tasks ${user.email}`), {
         title: task.title,
         description: task.description
     });
 }
 
-export const getTasks = async () => {
-    const querySnapshot = await getDocs(collection(db, 'tasks'))
+export const getTasks = async (user) => {
+    const querySnapshot = await getDocs(collection(db, `tasks ${user.email}`))
     const tasks = querySnapshot.docs.map(doc => {
         return{ ...doc.data(), id:doc.id }
     });

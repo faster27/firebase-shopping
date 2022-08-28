@@ -42,7 +42,7 @@ const sendTokenToServer = () => {
   if(localStorage.getItem('tokenSentToServer')) return;
   // TO-DO: Implementar la logica de que en el servidor 
   // se almacene el token
-  console.log("Ha almacenado el token")
+  //console.log("Ha almacenado el token")
   localStorage.setItem('tokenSentToServer', '1');
 } 
 

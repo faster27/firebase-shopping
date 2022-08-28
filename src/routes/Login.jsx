@@ -11,7 +11,7 @@ const auth = getAuth();
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setUser } = useContext(AppContext);
+  const { setUser, setRoute } = useContext(AppContext);
   const hazLoginGoogle = () => {
     signInWithPopup(auth, provider)
   .then((result) => {
@@ -25,6 +25,7 @@ const Login = () => {
     console.log('user',user)
     toast(`Inicio de sesion valido`)
     setUser(user);
+    setRoute("taskList");
   }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
@@ -46,6 +47,7 @@ const Login = () => {
       // ...
       toast(`Inicio de sesion valido`)
       setUser(user)
+      setRoute("taskList");
     })
     .catch((error) => {
       const errorCode = error.code;

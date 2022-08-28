@@ -15,7 +15,7 @@ const TaskList = () => {
   const { user } = useContext(AppContext)
 
   const createNewTask = async () => {
-    await addNewTask(task).catch(e => console.log("Error"));
+    await addNewTask(task, user).catch(e => console.log("Error"));
     setTask({title:"", description:""})
     initializeTasks();
   }
@@ -28,9 +28,11 @@ const TaskList = () => {
   }
 
   const initializeTasks = () => {
-    getTasks()
-        .then(t => setTasks([...t]))
-        .catch((e) => console.error(e));
+    if(user){
+      getTasks(user)
+          .then(t => setTasks([...t]))
+          .catch((e) => console.error(e));
+    }
   }
 
   const editTask = (id) => {
@@ -111,10 +113,11 @@ const TaskList = () => {
                 ))}
             </div>
         </div>
-        {!user && 
+        {!user && (
           <p className='text-red-600'>
             Necesitas estar logueado para poder leer y añadir tareas
-          </p>}
+          </p>
+        )}
     </div>
   )
 }
