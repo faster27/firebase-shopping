@@ -1,4 +1,5 @@
-import React,{ useState, useEffect } from 'react'
+import React,{ useState, useEffect, useContext } from 'react'
+import { AppContext } from '../App';
 import { addNewTask, getTasks, updateTask, deleteTask } from '../firebase/taskController'
 
 const task = {
@@ -11,8 +12,10 @@ const TaskList = () => {
   const [tasks, setTasks] = useState([]);
   const [mode, setMode] = useState("add");
 
+  const { user } = useContext(AppContext)
+
   const createNewTask = async () => {
-    await addNewTask(task);
+    await addNewTask(task).catch(e => console.log("Error"));
     setTask({title:"", description:""})
     initializeTasks();
   }
@@ -54,6 +57,7 @@ const TaskList = () => {
                 type="text" 
                 value={task.title}
                 placeholder="Titulo"
+                disabled={!user}
                 className='border shadow outline-none focus:ring ring-sky-200 rounded px-2 py-1
                 w-full'
                 onChange={e => setTask({ ...task,title: e.target.value })}
@@ -63,6 +67,7 @@ const TaskList = () => {
                 rows={3}
                 value={task.description}
                 placeholder="Descripción"
+                disabled={!user}
                 className='border shadow outline-none focus:ring ring-sky-200 rounded px-2 py-1
                 w-full'
                 onChange={e => setTask({...task,
@@ -71,7 +76,8 @@ const TaskList = () => {
 
             />
             <button 
-              className='bg-sky-400 text-white shadow rounded py-1 hover:bg-sky-500 transition font-semibold'
+              className='bg-sky-400 disabled:bg-sky-200 text-white shadow rounded py-1 hover:bg-sky-500 transition font-semibold'
+              disabled={!user}
               onClick={() => 
                 mode === "add" ? createNewTask() : updateExistingTask()
               }
@@ -105,6 +111,10 @@ const TaskList = () => {
                 ))}
             </div>
         </div>
+        {!user && 
+          <p className='text-red-600'>
+            Necesitas estar logueado para poder leer y añadir tareas
+          </p>}
     </div>
   )
 }
