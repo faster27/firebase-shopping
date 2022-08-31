@@ -56,7 +56,7 @@ const TaskList = () => {
    
   return (
     <div>
-        <h1 className='text-sky-700 font-semibold text-lg'>Bienvienido a tu lista de tareas</h1>
+        <h1 className='text-sky-700 font-semibold text-lg'>Bienvenido a tu lista de tareas</h1>
         <div className='flex flex-col gap-4'>
             <h2>Introduce una nueva tarea</h2>
             <input 

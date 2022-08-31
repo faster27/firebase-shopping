@@ -11,10 +11,10 @@ const Footer = () => {
             onClick={() => setRoute("home")}>
             <IoHomeSharp />
         </div>
-        <div className='hover:bg-sky-50 transition bg-sky-200 p-2 text-3xl rounded-full text-pink-500 cursor-pointer'
+        {/* <div className='hover:bg-sky-50 transition bg-sky-200 p-2 text-3xl rounded-full text-pink-500 cursor-pointer'
             onClick={() => setRoute("shopping")}>
             <BsCartFill />
-        </div>
+        </div> */}
         <div className='hover:bg-sky-50 transition bg-sky-200 p-2 text-3xl rounded-full text-pink-500 cursor-pointer'
             onClick={() => setRoute("taskList")}>
             <BsList />

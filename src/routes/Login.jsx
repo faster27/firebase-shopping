@@ -65,7 +65,7 @@ const Login = () => {
             <input className='border border-gray-500 rounded py-1 px-2 outline-none' placeholder='Email' type="email" value={email} onChange={e => setEmail(e.target.value)}/>
             <input className='border border-gray-500 rounded py-1 px-2 outline-none' placeholder='Password' type="password" value={password} onChange={e => setPassword(e.target.value)}/>
             <button className='bg-sky-400 py-1 text-white rounded shadow'>Log In</button>
-            <button className='bg-sky-400 py-1 text-white rounded shadow display: flex justify-between pr-5' onClick={hazLoginGoogle}><FcGoogle className='w-5 h-5 my-0.5' /> Login con Google</button>
+            <button className='bg-sky-400 py-1 text-white rounded shadow display: flex justify-between pl-3 pr-3 items-center' onClick={hazLoginGoogle}><FcGoogle className='w-5 h-5 my-0.5' /> Login con Google</button>
           </form>
           
         </div>
