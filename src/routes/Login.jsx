@@ -21,8 +21,6 @@ const Login = () => {
     // The signed-in user info.
     const user = result.user;
     // ...
-    console.log('token',token)
-    console.log('user',user)
     toast(`Inicio de sesion valido`)
     setUser(user);
     setRoute("taskList");
